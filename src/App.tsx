@@ -318,7 +318,7 @@ export default function App() {
               ].map((job, index) => (
                 <div key={index} className="relative pl-8 md:pl-0">
                   <div className="md:grid md:grid-cols-5 md:gap-8 items-start">
-                    <div className="mb-2 md:mb-0 md:text-right select-none pt-2 flex flex-wrap items-center md:items-start md:justify-end gap-2 md:gap-1 md:flex-col">
+                    <div className="mb-2 md:mb-0 md:text-right select-none pt-2 flex flex-wrap items-center md:items-end md:justify-start gap-2 md:gap-1 md:flex-col">
                       <div className="font-mono text-[13px] text-neutral-500 tracking-wide uppercase">{job.period}</div>
                       {job.duration && (
                          <>
@@ -520,7 +520,7 @@ export default function App() {
       <footer className="bg-[#fafafa] border-t border-neutral-200 py-12 px-6">
         <div className="max-w-6xl mx-auto md:px-12 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
           <p className="text-neutral-400 font-mono text-xs">
-            © {new Date().getFullYear()} João Fernandes. Designed & built with React & Tailwind.
+            © {new Date().getFullYear()} João Fernandes.
           </p>
           <div className="flex items-center gap-6">
             <a href="https://www.linkedin.com/in/joaofernandes351/" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-neutral-900 transition-colors">

@@ -256,7 +256,7 @@ export default function App() {
                     ].map((skill) => (
                       <span key={skill.name} className="mx-2 bg-white border border-neutral-200 text-neutral-600 px-4 py-2 flex items-center gap-2 rounded-md font-mono text-xs shadow-none font-medium hover:border-neutral-800/30 hover:text-neutral-900 group transition-colors duration-300">
                         <img 
-                          src={`https://cdn.simpleicons.org/${skill.slug}`} 
+                          src={skill.slug === 'csharp' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg` : skill.slug === 'java' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg` : `https://cdn.simpleicons.org/${skill.slug}`} 
                           alt={`${skill.name} logo`} 
                           loading="lazy"
                           className="w-4 h-4 group-hover:scale-110 transition-transform duration-300"
@@ -267,12 +267,12 @@ export default function App() {
                   </Marquee>
                   <Marquee fade fadeAmount={20} direction="right" className="mt-4">
                     {[
+                      { name: 'C#', slug: 'csharp' },
+                      { name: 'Java', slug: 'java' },
                       { name: 'Supabase', slug: 'supabase' },
                       { name: 'Python', slug: 'python' },
-                      { name: 'AWS', slug: 'amazonaws' },
                       { name: 'GraphQL', slug: 'graphql' },
                       { name: 'Redux', slug: 'redux' },
-                      { name: 'Zustand', slug: 'zustand' },
                       { name: 'Jest', slug: 'jest' },
                       { name: 'Cypress', slug: 'cypress' },
                       { name: 'Vite', slug: 'vite' },
@@ -280,7 +280,7 @@ export default function App() {
                     ].map((skill) => (
                       <span key={skill.name} className="mx-2 bg-white border border-neutral-200 text-neutral-600 px-4 py-2 flex items-center gap-2 rounded-md font-mono text-xs shadow-none font-medium hover:border-neutral-800/30 hover:text-neutral-900 group transition-colors duration-300">
                         <img 
-                          src={`https://cdn.simpleicons.org/${skill.slug}`} 
+                          src={skill.slug === 'csharp' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg` : skill.slug === 'java' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg` : `https://cdn.simpleicons.org/${skill.slug}`} 
                           alt={`${skill.name} logo`} 
                           loading="lazy"
                           className="w-4 h-4 group-hover:scale-110 transition-transform duration-300"

@@ -264,7 +264,7 @@ export default function App() {
                 </p>
               </div>
               <div>
-                <h3 className="text-sm font-mono uppercase tracking-wider text-neutral-500 mb-6">Technical Skills</h3>
+                <h3 className="text-sm font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-6">Technical Skills</h3>
                 <div className="w-full">
                   <Marquee fade fadeAmount={20}>
                     {[
@@ -279,12 +279,12 @@ export default function App() {
                       { name: 'Figma', slug: 'figma' },
                       { name: 'Docker', slug: 'docker' },
                     ].map((skill) => (
-                      <span key={skill.name} className="mx-2 bg-white border border-neutral-200 text-neutral-600 px-4 py-2 flex items-center gap-2 rounded-md font-mono text-xs shadow-none font-medium hover:border-neutral-800/30 hover:text-neutral-900 group transition-colors duration-300">
+                      <span key={skill.name} className="mx-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 px-4 py-2 flex items-center gap-2 rounded-md font-mono text-xs shadow-none font-medium hover:border-neutral-800/30 dark:hover:border-neutral-600/50 hover:text-neutral-900 dark:hover:text-white group transition-colors duration-300">
                         <img 
                           src={skill.slug === 'csharp' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg` : skill.slug === 'java' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg` : `https://cdn.simpleicons.org/${skill.slug}`} 
                           alt={`${skill.name} logo`} 
                           loading="lazy"
-                          className="w-4 h-4 group-hover:scale-110 transition-transform duration-300"
+                          className="w-4 h-4 group-hover:scale-110 transition-transform duration-300 dark:invert opacity-80 group-hover:opacity-100"
                         />
                         {skill.name}
                       </span>
@@ -303,12 +303,12 @@ export default function App() {
                       { name: 'Vite', slug: 'vite' },
                       { name: 'Webpack', slug: 'webpack' },
                     ].map((skill) => (
-                      <span key={skill.name} className="mx-2 bg-white border border-neutral-200 text-neutral-600 px-4 py-2 flex items-center gap-2 rounded-md font-mono text-xs shadow-none font-medium hover:border-neutral-800/30 hover:text-neutral-900 group transition-colors duration-300">
+                      <span key={skill.name} className="mx-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 px-4 py-2 flex items-center gap-2 rounded-md font-mono text-xs shadow-none font-medium hover:border-neutral-800/30 dark:hover:border-neutral-600/50 hover:text-neutral-900 dark:hover:text-white group transition-colors duration-300">
                         <img 
                           src={skill.slug === 'csharp' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg` : skill.slug === 'java' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg` : `https://cdn.simpleicons.org/${skill.slug}`} 
                           alt={`${skill.name} logo`} 
                           loading="lazy"
-                          className="w-4 h-4 group-hover:scale-110 transition-transform duration-300"
+                          className="w-4 h-4 group-hover:scale-110 transition-transform duration-300 dark:invert opacity-80 group-hover:opacity-100"
                         />
                         {skill.name}
                       </span>
@@ -373,14 +373,14 @@ export default function App() {
                         <img src={job.logo} alt={`Company logo ${job.company}`} className="w-12 h-12 rounded object-cover border border-neutral-200 shrink-0 " />
                         <div>
                           <h3 className="text-xl font-bold text-neutral-900 dark:text-white leading-tight mb-2">{job.role}</h3>
-                          <p className="text-neutral-900 font-mono text-sm">{job.company}</p>
+                          <p className="text-neutral-900 dark:text-neutral-300 font-mono text-sm">{job.company}</p>
                         </div>
                       </div>
-                      <p className="text-neutral-600 leading-relaxed mb-6">{job.description}</p>
+                      <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed mb-6">{job.description}</p>
                         {job.skills && job.skills.length > 0 && (
                           <div className="flex flex-wrap gap-2">
                              {job.skills.map((skill, i) => (
-                               <span key={i} className="font-mono bg-neutral-100 text-neutral-800 px-3 py-1.5 text-xs rounded border border-neutral-200 transition-colors duration-300">
+                               <span key={i} className="font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-300 px-3 py-1.5 text-xs rounded border border-neutral-200 dark:border-neutral-700 transition-colors duration-300">
                                  {skill}
                                </span>
                              ))}
@@ -447,7 +447,7 @@ export default function App() {
                         <img src={edu.logo} alt={`Logo of ${edu.school}`} className="w-12 h-12 rounded object-cover border border-neutral-200 shrink-0" />
                         <div className="pt-0.5">
                           <h3 className="text-xl font-bold text-neutral-900 dark:text-white leading-tight mb-2">{edu.degree}</h3>
-                          <p className="text-neutral-900 font-mono text-sm">{edu.school}</p>
+                          <p className="text-neutral-900 dark:text-neutral-300 font-mono text-sm">{edu.school}</p>
                         </div>
                       </div>
                     </div>
@@ -522,21 +522,21 @@ export default function App() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-neutral-900/5 group-hover:bg-transparent transition-colors duration-300 pointer-events-none"></div>
+                    <div className="absolute inset-0 bg-neutral-900/5 dark:bg-white/5 group-hover:bg-transparent transition-colors duration-300 pointer-events-none"></div>
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
-                       <a href={project.link} className="hover:text-neutral-900 transition-colors flex items-center gap-2 group/link">
+                       <a href={project.link} className="hover:text-neutral-900 dark:hover:text-neutral-300 transition-colors flex items-center gap-2 group/link">
                          {project.title}
-                         <ExternalLink className="h-4 w-4 opacity-0 group-hover/link:opacity-100 -translate-y-1 -translate-x-1 group-hover/link:translate-y-0 group-hover/link:translate-x-0 transition-all text-neutral-900" />
+                         <ExternalLink className="h-4 w-4 opacity-0 group-hover/link:opacity-100 -translate-y-1 -translate-x-1 group-hover/link:translate-y-0 group-hover/link:translate-x-0 transition-all text-neutral-900 dark:text-neutral-300" />
                        </a>
                     </h3>
-                    <p className="text-neutral-600 text-sm leading-relaxed mb-6 flex-1">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-6 flex-1">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.tags.map(tag => (
-                        <span key={tag} className="text-[11px] font-mono font-medium text-neutral-900 bg-neutral-100 border border-neutral-200 px-2 py-1 rounded">
+                        <span key={tag} className="text-[11px] font-mono font-medium text-neutral-900 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 px-2 py-1 rounded">
                           {tag}
                         </span>
                       ))}
@@ -553,7 +553,7 @@ export default function App() {
             </div>
             
             <div className="mt-12 flex justify-center">
-              <a href="https://github.com/joaofernandes52" target="_blank" rel="noreferrer" className="inline-flex items-center text-neutral-900 font-mono text-sm border-b border-transparent hover:border-neutral-900 pb-0.5 transition-all group">
+              <a href="https://github.com/joaofernandes52" target="_blank" rel="noreferrer" className="inline-flex items-center text-neutral-900 dark:text-white font-mono text-sm border-b border-transparent hover:border-neutral-900 dark:hover:border-white pb-0.5 transition-all group">
                 View all on GitHub
                 <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
               </a>

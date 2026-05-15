@@ -237,9 +237,6 @@ export default function App() {
                 <p>
                   I'm focused on building digital products that not only work perfectly but also deliver real value to the project. I like to act as a bridge between design and engineering, ensuring interfaces are accessible, responsive, and easy to use.
                 </p>
-                <p>
-                  Currently, I specialize in the <strong className="text-neutral-900 font-medium">React / Next.js / TypeScript</strong> ecosystem, but I adapt easily to new technologies and tools according to business needs. 
-                </p>
               </div>
               <div>
                 <h3 className="text-sm font-mono uppercase tracking-wider text-neutral-500 mb-6">Technical Skills</h3>

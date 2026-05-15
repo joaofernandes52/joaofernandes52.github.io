@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
       // Fix for "Cannot set property fetch of #<Window> which has only a getter"
-      // caused by some libraries (like whatwg-fetch) trying to polyfill fetch
       if (typeof window !== 'undefined') {
+        let _fetch = window.fetch;
         Object.defineProperty(window, 'fetch', {
-          value: window.fetch,
-          writable: true,
-          configurable: true
+          get: function() { return _fetch; },
+          set: function(val) { _fetch = val; },
+          configurable: true,
+          enumerable: true
         });
       }
     </script>

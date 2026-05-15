@@ -4,20 +4,6 @@ import { Github, Linkedin, Mail, ExternalLink, Download, ArrowRight, Briefcase, 
 
 import { BackgroundLight } from './components/ui/background-snippets';
 import { Marquee } from './components/ui/marquee';
-import { EditTool } from './components/EditTool';
-
-const OLD_CODE = `while awake:
-    write_code()
-    if has_bugs():
-        cry_a_little()
-`;
-
-const NEW_CODE = `while alive:
-    coffee()
-    code()
-    try: ship()
-    except: coffee()
-`;
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -189,13 +175,13 @@ export default function App() {
         
         {/* HERO SECTION */}
         <section id="home" className="min-h-[70vh] flex flex-col justify-center scroll-mt-32 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 gap-12 items-center">
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="order-1"
+              className="order-1 max-w-3xl"
             >
               <div className="font-mono text-neutral-900 dark:text-neutral-300 mb-4 tracking-widest text-sm">Hello, World. I am</div>
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 dark:text-white mb-6">
@@ -222,21 +208,6 @@ export default function App() {
                   Download CV
                 </a>
               </div>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="order-2 w-full lg:max-w-[480px] lg:ml-auto"
-            >
-               <EditTool 
-                 state="completed"
-                 variant="edit"
-                 filePath="developer.py"
-                 oldContent={OLD_CODE}
-                 newContent={NEW_CODE}
-               />
             </motion.div>
             
           </div>

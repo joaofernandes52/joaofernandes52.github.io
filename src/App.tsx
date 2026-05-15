@@ -257,9 +257,9 @@ export default function App() {
               <div className="h-px bg-white/10 flex-1"></div>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-12 text-neutral-600 leading-relaxed text-lg">
+            <div className="grid md:grid-cols-2 gap-12 leading-relaxed">
               <div className="space-y-6">
-                <p>
+                <p className="text-xl md:text-2xl text-neutral-800 dark:text-neutral-200 font-medium">
                   I'm focused on building digital products that not only work perfectly but also deliver real value to the project. I like to act as a bridge between design and engineering, ensuring interfaces are accessible, responsive, and easy to use.
                 </p>
               </div>
@@ -284,7 +284,7 @@ export default function App() {
                           src={skill.slug === 'csharp' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg` : skill.slug === 'java' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg` : `https://cdn.simpleicons.org/${skill.slug}`} 
                           alt={`${skill.name} logo`} 
                           loading="lazy"
-                          className="w-4 h-4 group-hover:scale-110 transition-transform duration-300 dark:invert opacity-80 group-hover:opacity-100"
+                          className="w-4 h-4 group-hover:scale-110 transition-transform duration-300 dark:brightness-0 dark:invert opacity-80 group-hover:opacity-100"
                         />
                         {skill.name}
                       </span>
@@ -306,7 +306,7 @@ export default function App() {
                           src={skill.slug === 'csharp' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg` : skill.slug === 'java' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg` : `https://cdn.simpleicons.org/${skill.slug}`} 
                           alt={`${skill.name} logo`} 
                           loading="lazy"
-                          className="w-4 h-4 group-hover:scale-110 transition-transform duration-300 dark:invert opacity-80 group-hover:opacity-100"
+                          className="w-4 h-4 group-hover:scale-110 transition-transform duration-300 dark:brightness-0 dark:invert opacity-80 group-hover:opacity-100"
                         />
                         {skill.name}
                       </span>
@@ -367,8 +367,8 @@ export default function App() {
                     </div>
                     
                     <div className="md:col-span-4 pb-8 md:pb-0 relative group">
-                      <div className="flex items-start gap-4 mb-5 border-l-2 border-neutral-200 pl-6 -ml-6 pb-2">
-                        <img src={job.logo} alt={`Company logo ${job.company}`} className="w-12 h-12 rounded object-cover border border-neutral-200 shrink-0 " />
+                      <div className="flex items-start gap-4 mb-5 border-l-2 border-neutral-200 dark:border-neutral-800 pl-6 -ml-6 pb-2">
+                        <img src={job.logo} alt={`Company logo ${job.company}`} className="w-12 h-12 rounded object-cover border border-neutral-200 dark:border-neutral-800 shrink-0 " />
                         <div>
                           <h3 className="text-xl font-bold text-neutral-900 dark:text-white leading-tight mb-2">{job.role}</h3>
                           <p className="text-neutral-900 dark:text-neutral-300 font-mono text-sm">{job.company}</p>
@@ -441,8 +441,8 @@ export default function App() {
                     </div>
                     
                     <div className="md:col-span-4 pb-8 md:pb-0 relative group">
-                      <div className="flex items-start gap-4 mb-2 border-l-2 border-neutral-200 pl-6 -ml-6 pb-2">
-                        <img src={edu.logo} alt={`Logo of ${edu.school}`} className="w-12 h-12 rounded object-cover border border-neutral-200 shrink-0" />
+                      <div className="flex items-start gap-4 mb-2 border-l-2 border-neutral-200 dark:border-neutral-800 pl-6 -ml-6 pb-2">
+                        <img src={edu.logo} alt={`Logo of ${edu.school}`} className="w-12 h-12 rounded object-cover border border-neutral-200 dark:border-neutral-800 shrink-0" />
                         <div className="pt-0.5">
                           <h3 className="text-xl font-bold text-neutral-900 dark:text-white leading-tight mb-2">{edu.degree}</h3>
                           <p className="text-neutral-900 dark:text-neutral-300 font-mono text-sm">{edu.school}</p>
@@ -513,7 +513,7 @@ export default function App() {
                 }
               ].map((project, index) => (
                 <div key={index} className="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 overflow-hidden group hover:border-neutral-800/30 dark:hover:border-neutral-600/50 transition-all duration-300 flex flex-col hover:-translate-y-1 hover:shadow-xl pt-1">
-                  <div className="relative overflow-hidden aspect-video bg-[#fafafa] border-b border-neutral-200">
+                  <div className="relative overflow-hidden aspect-video bg-[#fafafa] dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
                     <img 
                       src={project.image} 
                       alt={project.title} 
@@ -539,8 +539,8 @@ export default function App() {
                         </span>
                       ))}
                     </div>
-                    <div className="flex items-center justify-between border-t border-neutral-200 pt-5 mt-auto">
-                       <a href={project.github} className="text-sm font-medium text-neutral-500 hover:text-neutral-900 flex items-center gap-1.5 transition-colors">
+                    <div className="flex items-center justify-between border-t border-neutral-200 dark:border-neutral-800 pt-5 mt-auto">
+                       <a href={project.github} className="text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-300 flex items-center gap-1.5 transition-colors">
                          <Github className="h-4 w-4" /> Source code
                        </a>
                     </div>

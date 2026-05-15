@@ -452,6 +452,12 @@ export default function App() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
+              <div className="md:col-span-2 py-12 flex justify-center items-center border border-dashed border-neutral-300 rounded-xl bg-neutral-50/50">
+                <span className="text-neutral-500 font-mono text-lg flex items-center gap-2">
+                   <Code className="h-5 w-5" /> Soon...
+                </span>
+              </div>
+              {/*
               {[
                 {
                   title: 'FinTech Dashboard Master',
@@ -520,7 +526,8 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-              ))}
+              ))
+              */}
             </div>
             
             <div className="mt-12 flex justify-center">

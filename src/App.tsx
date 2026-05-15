@@ -259,14 +259,14 @@ export default function App() {
             
             <div className="grid md:grid-cols-2 gap-12 text-neutral-600 dark:text-neutral-300 leading-relaxed text-lg">
               <div className="space-y-6">
-                <p className="text-justify break-words hyphens-auto">
+                <p className="text-justify">
                   I'm focused on building digital products that not only work perfectly but also deliver real value to the project. I like to act as a bridge between design and engineering, ensuring interfaces are accessible, responsive, and easy to use.
                 </p>
               </div>
               <div className="min-w-0">
                 <h3 className="text-sm font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-6">Technical Skills</h3>
                 <div className="w-full overflow-hidden">
-                  <Marquee fade fadeAmount={20}>
+                  <Marquee fade fadeAmount={10}>
                     {[
                       { name: 'JavaScript', slug: 'javascript' },
                       { name: 'TypeScript', slug: 'typescript' },
@@ -290,7 +290,7 @@ export default function App() {
                       </span>
                     ))}
                   </Marquee>
-                  <Marquee fade fadeAmount={20} direction="right" className="mt-4">
+                  <Marquee fade fadeAmount={10} direction="right" className="mt-4">
                     {[
                       { name: 'C#', slug: 'csharp' },
                       { name: 'Java', slug: 'java' },

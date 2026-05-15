@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Github, Linkedin, Mail, ExternalLink, Download, ArrowRight, Briefcase, User, Code, FileText, Menu, X, GraduationCap } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, Download, ArrowRight, Briefcase, User, Code, FileText, Menu, X, GraduationCap, Moon, Sun } from 'lucide-react';
 
 import { BackgroundLight } from './components/ui/background-snippets';
 import { Marquee } from './components/ui/marquee';
@@ -23,6 +23,15 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,15 +83,15 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafafa] text-neutral-600 font-sans selection:bg-neutral-900 selection:text-neutral-900 w-full overflow-x-hidden relative">
+    <div className="min-h-screen bg-[#fafafa] dark:bg-[#0a0a0a] text-neutral-600 dark:text-neutral-400 font-sans selection:bg-neutral-900 selection:text-white dark:selection:bg-white dark:selection:text-neutral-900 w-full overflow-x-hidden relative">
       <div className="fixed inset-0 flex pointer-events-none z-[-2]">
          <BackgroundLight />
       </div>
       
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md border-b border-neutral-200 shadow-sm py-2' : 'bg-transparent py-4'}`}>
+      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 dark:bg-[#0a0a0a]/90 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-900 shadow-sm py-2' : 'bg-transparent py-4'}`}>
         <div className={`flex justify-between items-center px-6 md:px-12 max-w-7xl mx-auto`}>
-          <a href="#home" onClick={(e) => scrollToSection(e, '#home')} className="text-xl font-bold tracking-tight text-neutral-900 relative z-10">
+          <a href="#home" onClick={(e) => scrollToSection(e, '#home')} className="text-xl font-bold tracking-tight text-neutral-900 dark:text-white relative z-10">
             J F .
           </a>
           
@@ -93,7 +102,7 @@ export default function App() {
                 <a 
                   href={link.href} 
                   onClick={(e) => scrollToSection(e, link.href)}
-                  className={`px-4 py-2 rounded-full text-[15px] font-medium transition-all hover:bg-neutral-100/80 hover:text-neutral-900 flex items-center gap-1.5 ${activeSection === link.href.substring(1) ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600'}`}
+                  className={`px-4 py-2 rounded-full text-[15px] font-medium transition-all hover:bg-neutral-100/80 dark:hover:bg-neutral-900 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1.5 ${activeSection === link.href.substring(1) ? 'bg-neutral-100 dark:bg-neutral-900 text-neutral-900 dark:text-white' : 'text-neutral-600 dark:text-neutral-400'}`}
                 >
                   {link.name}
                 </a>
@@ -103,22 +112,38 @@ export default function App() {
 
           {/* Social Links Desktop */}
           <div className="hidden md:flex items-center space-x-3 relative z-10">
-             <a href="https://www.linkedin.com/in/joaofernandes351/" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 p-1.5 rounded-full transition-colors" aria-label="LinkedIn">
+             <button 
+               onClick={() => setIsDarkMode(!isDarkMode)} 
+               className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 p-1.5 rounded-full transition-colors"
+               aria-label="Toggle dark mode"
+             >
+               {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+             </button>
+             <a href="https://www.linkedin.com/in/joaofernandes351/" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 p-1.5 rounded-full transition-colors" aria-label="LinkedIn">
               <Linkedin className="h-5 w-5" />
-            </a>
-            <a href="https://github.com/joaofernandes52" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 p-1.5 rounded-full transition-colors" aria-label="GitHub">
+             </a>
+            <a href="https://github.com/joaofernandes52" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 p-1.5 rounded-full transition-colors" aria-label="GitHub">
               <Github className="h-5 w-5" />
             </a>
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button 
-            className="md:hidden text-neutral-600 hover:text-neutral-900 transition-colors relative z-10 p-1 px-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="md:hidden flex items-center space-x-2 relative z-10 p-1 px-2">
+            <button 
+               onClick={() => setIsDarkMode(!isDarkMode)} 
+               className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors p-1"
+               aria-label="Toggle dark mode"
+             >
+               {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </button>
+            <button 
+              className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors p-1"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -129,7 +154,7 @@ export default function App() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-[#fafafa] pt-24 px-6 md:hidden flex flex-col"
+             className="fixed inset-0 z-40 bg-[#fafafa] dark:bg-[#0a0a0a] pt-24 px-6 md:hidden flex flex-col"
           >
             <ul className="flex flex-col space-y-6 text-xl font-semibold mb-12">
               {navLinks.map((link, i) => (
@@ -137,22 +162,22 @@ export default function App() {
                   <a 
                     href={link.href} 
                     onClick={(e) => scrollToSection(e, link.href)}
-                    className={`flex items-center gap-4 ${activeSection === link.href.substring(1) ? 'text-neutral-900' : 'text-neutral-700'}`}
+                    className={`flex items-center gap-4 ${activeSection === link.href.substring(1) ? 'text-neutral-900 dark:text-white' : 'text-neutral-700 dark:text-neutral-300'}`}
                   >
-                    <span className="font-mono text-sm text-neutral-800/50">0{i+1}.</span>
+                    <span className="font-mono text-sm text-neutral-800/50 dark:text-neutral-200/50">0{i+1}.</span>
                     {link.name}
                   </a>
                 </li>
               ))}
             </ul>
-            <div className="flex items-center space-x-6 border-t border-neutral-200 pt-8 mt-auto mb-12">
-              <a href="https://www.linkedin.com/in/joaofernandes351/" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-neutral-900 transition-colors">
+            <div className="flex items-center space-x-6 border-t border-neutral-200 dark:border-neutral-900 pt-8 mt-auto mb-12">
+              <a href="https://www.linkedin.com/in/joaofernandes351/" target="_blank" rel="noreferrer" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
                 <Linkedin className="h-6 w-6" />
               </a>
-              <a href="https://github.com/joaofernandes52" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-neutral-900 transition-colors">
+              <a href="https://github.com/joaofernandes52" target="_blank" rel="noreferrer" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
                 <Github className="h-6 w-6" />
               </a>
-              <a href="mailto:joaofernandes351@gmail.com" className="text-neutral-500 hover:text-neutral-900 transition-colors">
+              <a href="mailto:joaofernandes351@gmail.com" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
                 <Mail className="h-6 w-6" />
               </a>
             </div>
@@ -172,28 +197,28 @@ export default function App() {
               transition={{ duration: 0.5 }}
               className="order-1"
             >
-              <div className="font-mono text-neutral-900 mb-4 tracking-widest text-sm">Hello, World. I am</div>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 mb-6">
+              <div className="font-mono text-neutral-900 dark:text-neutral-300 mb-4 tracking-widest text-sm">Hello, World. I am</div>
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 dark:text-white mb-6">
                 João Fernandes
               </h1>
-              <h2 className="text-xl md:text-2xl text-neutral-600 font-medium mb-8 max-w-2xl leading-relaxed">
-                Software Engineer & Junior AI Engineer crafting modern, fast, and intelligent web experiences.
+              <h2 className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 font-medium mb-8 max-w-2xl leading-relaxed">
+                Software Engineer & Junior AI Engineer crafting modern, fast, and intelligent experiences.
               </h2>
               
               <div className="flex flex-wrap items-center gap-4">
                 <a 
                   href="#projects" 
                   onClick={(e) => scrollToSection(e, '#projects')}
-                  className="inline-flex items-center justify-center bg-neutral-900 text-white border border-neutral-900 px-6 py-3 rounded-md font-mono text-sm font-medium hover:bg-neutral-800 transition-colors shadow-sm"
+                  className="inline-flex items-center justify-center bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 border border-neutral-900 dark:border-white px-6 py-3 rounded-md font-mono text-sm font-medium hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors shadow-sm"
                 >
                   View Projects
                 </a>
                 <a 
                   href="#" 
                   onClick={(e) => scrollToSection(e, '#')}
-                  className="inline-flex items-center justify-center bg-white text-neutral-900 border border-neutral-200 px-6 py-3 rounded-md font-mono text-sm font-medium hover:bg-neutral-50 transition-colors gap-2"
+                  className="inline-flex items-center justify-center bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 px-6 py-3 rounded-md font-mono text-sm font-medium hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors gap-2"
                 >
-                  <Download className="h-4 w-4 text-neutral-800" />
+                  <Download className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
                   Download CV
                 </a>
               </div>
@@ -226,8 +251,8 @@ export default function App() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-3xl font-bold text-neutral-900 tracking-tight flex items-center gap-2">
-                <span className="text-neutral-900 font-mono text-xl">01.</span> About me
+              <h2 className="text-3xl font-bold text-neutral-900 dark:text-white tracking-tight flex items-center gap-2">
+                <span className="text-neutral-900 dark:text-neutral-400 font-mono text-xl">01.</span> About me
               </h2>
               <div className="h-px bg-white/10 flex-1"></div>
             </div>
@@ -304,8 +329,8 @@ export default function App() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center gap-4 mb-12">
-              <h2 className="text-3xl font-bold text-neutral-900 tracking-tight flex items-center gap-2">
-                <span className="text-neutral-900 font-mono text-xl">02.</span> Professional Experience
+              <h2 className="text-3xl font-bold text-neutral-900 dark:text-white tracking-tight flex items-center gap-2">
+                <span className="text-neutral-900 dark:text-neutral-400 font-mono text-xl">02.</span> Professional Experience
               </h2>
               <div className="h-px bg-white/10 flex-1"></div>
             </div>
@@ -347,7 +372,7 @@ export default function App() {
                       <div className="flex items-start gap-4 mb-5 border-l-2 border-neutral-200 pl-6 -ml-6 pb-2">
                         <img src={job.logo} alt={`Company logo ${job.company}`} className="w-12 h-12 rounded object-cover border border-neutral-200 shrink-0 " />
                         <div>
-                          <h3 className="text-xl font-bold text-neutral-900 leading-tight mb-2">{job.role}</h3>
+                          <h3 className="text-xl font-bold text-neutral-900 dark:text-white leading-tight mb-2">{job.role}</h3>
                           <p className="text-neutral-900 font-mono text-sm">{job.company}</p>
                         </div>
                       </div>
@@ -378,8 +403,8 @@ export default function App() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center gap-4 mb-12">
-              <h2 className="text-3xl font-bold text-neutral-900 tracking-tight flex items-center gap-2">
-                <span className="text-neutral-900 font-mono text-xl">03.</span> Academic Education
+              <h2 className="text-3xl font-bold text-neutral-900 dark:text-white tracking-tight flex items-center gap-2">
+                <span className="text-neutral-900 dark:text-neutral-400 font-mono text-xl">03.</span> Academic Education
               </h2>
               <div className="h-px bg-white/10 flex-1"></div>
             </div>
@@ -421,7 +446,7 @@ export default function App() {
                       <div className="flex items-start gap-4 mb-2 border-l-2 border-neutral-200 pl-6 -ml-6 pb-2">
                         <img src={edu.logo} alt={`Logo of ${edu.school}`} className="w-12 h-12 rounded object-cover border border-neutral-200 shrink-0" />
                         <div className="pt-0.5">
-                          <h3 className="text-xl font-bold text-neutral-900 leading-tight mb-2">{edu.degree}</h3>
+                          <h3 className="text-xl font-bold text-neutral-900 dark:text-white leading-tight mb-2">{edu.degree}</h3>
                           <p className="text-neutral-900 font-mono text-sm">{edu.school}</p>
                         </div>
                       </div>
@@ -442,14 +467,14 @@ export default function App() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center gap-4 mb-12">
-              <h2 className="text-3xl font-bold text-neutral-900 tracking-tight flex items-center gap-2">
-                <span className="text-neutral-900 font-mono text-xl">04.</span> Featured Projects
+              <h2 className="text-3xl font-bold text-neutral-900 dark:text-white tracking-tight flex items-center gap-2">
+                <span className="text-neutral-900 dark:text-neutral-400 font-mono text-xl">04.</span> Featured Projects
               </h2>
               <div className="h-px bg-white/10 flex-1"></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="md:col-span-2 py-12 flex justify-center items-center border border-dashed border-neutral-300 rounded-xl bg-neutral-50/50">
+              <div className="md:col-span-2 py-12 flex justify-center items-center border border-dashed border-neutral-300 dark:border-neutral-800 rounded-xl bg-neutral-50/50 dark:bg-neutral-900/50">
                 <span className="text-neutral-500 font-mono text-lg flex items-center gap-2">
                    <Code className="h-5 w-5" /> Soon...
                 </span>
@@ -489,7 +514,7 @@ export default function App() {
                   tags: ['React', 'TypeScript', 'Zustand']
                 }
               ].map((project, index) => (
-                <div key={index} className="bg-white rounded-xl border border-neutral-200 overflow-hidden group hover:border-neutral-800/30 transition-all duration-300 flex flex-col hover:-translate-y-1 hover:shadow-xl pt-1">
+                <div key={index} className="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 overflow-hidden group hover:border-neutral-800/30 dark:hover:border-neutral-600/50 transition-all duration-300 flex flex-col hover:-translate-y-1 hover:shadow-xl pt-1">
                   <div className="relative overflow-hidden aspect-video bg-[#fafafa] border-b border-neutral-200">
                     <img 
                       src={project.image} 
@@ -500,7 +525,7 @@ export default function App() {
                     <div className="absolute inset-0 bg-neutral-900/5 group-hover:bg-transparent transition-colors duration-300 pointer-events-none"></div>
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold text-neutral-900 mb-2">
+                    <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
                        <a href={project.link} className="hover:text-neutral-900 transition-colors flex items-center gap-2 group/link">
                          {project.title}
                          <ExternalLink className="h-4 w-4 opacity-0 group-hover/link:opacity-100 -translate-y-1 -translate-x-1 group-hover/link:translate-y-0 group-hover/link:translate-x-0 transition-all text-neutral-900" />
@@ -539,21 +564,21 @@ export default function App() {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-[#fafafa] border-t border-neutral-200 py-12 px-6">
+      <footer className="bg-[#fafafa] dark:bg-[#0a0a0a] border-t border-neutral-200 dark:border-neutral-900 py-12 px-6">
         <div className="max-w-6xl mx-auto md:px-12 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-          <p className="text-neutral-400 font-mono text-xs">
+          <p className="text-neutral-400 dark:text-neutral-500 font-mono text-xs">
             © {new Date().getFullYear()} João Fernandes.
           </p>
           <div className="flex items-center gap-6">
-            <a href="https://www.linkedin.com/in/joaofernandes351/" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-neutral-900 transition-colors">
+            <a href="https://www.linkedin.com/in/joaofernandes351/" target="_blank" rel="noreferrer" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
               <span className="sr-only">LinkedIn</span>
               <Linkedin className="h-5 w-5" />
             </a>
-            <a href="https://github.com/joaofernandes52" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-neutral-900 transition-colors">
+            <a href="https://github.com/joaofernandes52" target="_blank" rel="noreferrer" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
               <span className="sr-only">GitHub</span>
               <Github className="h-5 w-5" />
             </a>
-            <a href="mailto:joaofernandes351@gmail.com" className="text-neutral-500 hover:text-neutral-900 transition-colors">
+            <a href="mailto:joaofernandes351@gmail.com" className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
               <span className="sr-only">Email</span>
               <Mail className="h-5 w-5" />
             </a>

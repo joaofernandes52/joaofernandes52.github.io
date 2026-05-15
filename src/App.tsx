@@ -58,6 +58,21 @@ export default function App() {
     { name: 'Projects', href: '#projects', icon: Code },
   ];
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    if (href === '#') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setIsMobileMenuOpen(false);
+      return;
+    }
+    const targetId = href.substring(1);
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-[#fafafa] text-neutral-600 font-sans selection:bg-neutral-900 selection:text-neutral-900 w-full overflow-x-hidden relative">
       <div className="fixed inset-0 flex pointer-events-none z-[-2]">
@@ -67,7 +82,7 @@ export default function App() {
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md border-b border-neutral-200 shadow-sm py-2' : 'bg-transparent py-4'}`}>
         <div className={`flex justify-between items-center px-6 md:px-12 max-w-7xl mx-auto`}>
-          <a href="#home" className="text-xl font-bold tracking-tight text-neutral-900 relative z-10">
+          <a href="#home" onClick={(e) => scrollToSection(e, '#home')} className="text-xl font-bold tracking-tight text-neutral-900 relative z-10">
             J F .
           </a>
           
@@ -77,6 +92,7 @@ export default function App() {
               <li key={link.name}>
                 <a 
                   href={link.href} 
+                  onClick={(e) => scrollToSection(e, link.href)}
                   className={`px-4 py-2 rounded-full text-[15px] font-medium transition-all hover:bg-neutral-100/80 hover:text-neutral-900 flex items-center gap-1.5 ${activeSection === link.href.substring(1) ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600'}`}
                 >
                   {link.name}
@@ -120,7 +136,7 @@ export default function App() {
                 <li key={link.name}>
                   <a 
                     href={link.href} 
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => scrollToSection(e, link.href)}
                     className={`flex items-center gap-4 ${activeSection === link.href.substring(1) ? 'text-neutral-900' : 'text-neutral-700'}`}
                   >
                     <span className="font-mono text-sm text-neutral-800/50">0{i+1}.</span>
@@ -167,12 +183,14 @@ export default function App() {
               <div className="flex flex-wrap items-center gap-4">
                 <a 
                   href="#projects" 
+                  onClick={(e) => scrollToSection(e, '#projects')}
                   className="inline-flex items-center justify-center bg-neutral-900 text-white border border-neutral-900 px-6 py-3 rounded-md font-mono text-sm font-medium hover:bg-neutral-800 transition-colors shadow-sm"
                 >
                   View Projects
                 </a>
                 <a 
                   href="#" 
+                  onClick={(e) => scrollToSection(e, '#')}
                   className="inline-flex items-center justify-center bg-white text-neutral-900 border border-neutral-200 px-6 py-3 rounded-md font-mono text-sm font-medium hover:bg-neutral-50 transition-colors gap-2"
                 >
                   <Download className="h-4 w-4 text-neutral-800" />

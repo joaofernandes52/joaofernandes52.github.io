@@ -201,7 +201,7 @@ export default function App() {
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 dark:text-white mb-6">
                 João Fernandes
               </h1>
-              <h2 className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 font-medium mb-8 max-w-2xl leading-relaxed">
+              <h2 className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 font-medium mb-8 max-w-2xl leading-relaxed text-justify">
                 Software Engineer & Junior AI Engineer crafting modern, fast, and intelligent experiences.
               </h2>
               
@@ -257,9 +257,9 @@ export default function App() {
               <div className="h-px bg-white/10 flex-1"></div>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-12 leading-relaxed">
+            <div className="grid md:grid-cols-2 gap-12 text-neutral-600 dark:text-neutral-300 leading-relaxed text-lg">
               <div className="space-y-6">
-                <p className="text-xl md:text-2xl text-neutral-800 dark:text-neutral-200 font-medium">
+                <p className="text-justify">
                   I'm focused on building digital products that not only work perfectly but also deliver real value to the project. I like to act as a bridge between design and engineering, ensuring interfaces are accessible, responsive, and easy to use.
                 </p>
               </div>

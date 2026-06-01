@@ -350,7 +350,7 @@ export default function App() {
                   role: 'Full-Stack Developer',
                   company: 'University of Madeira',
                   logo: 'https://media.licdn.com/dms/image/v2/C4D0BAQGZ0svm8mSUQw/company-logo_100_100/company-logo_100_100/0/1630496843625/universidade_da_madeira_logo?e=1781740800&v=beta&t=seVK_OIBSSbqof8Ca1IQl7fCjYYOJyIB68eTsT88q2M',
-                  description: 'Funchal, Madeira, PT',
+                  description: 'Funchal, Madeira, Portugal',
                   skills: ['Internship']
                 },
                 {
@@ -366,7 +366,7 @@ export default function App() {
                 <div key={index} className="relative pl-8 md:pl-0">
                   <div className="md:grid md:grid-cols-5 md:gap-8 items-start">
                     <div className="mb-2 md:mb-0 md:text-right select-none pt-2 flex flex-wrap items-center md:items-end md:justify-start gap-2 md:gap-1 md:flex-col">
-                      <div className="font-mono text-[13px] text-neutral-500 tracking-wide uppercase">{job.period}</div>
+                      <div className="font-mono text-[13px] text-neutral-500 tracking-wide uppercase whitespace-nowrap">{job.period}</div>
                       {job.duration && (
                          <>
                            <div className="text-neutral-300 md:hidden">•</div>

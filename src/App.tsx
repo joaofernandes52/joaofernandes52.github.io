@@ -345,6 +345,15 @@ export default function App() {
                   skills: ['Internship']
                 },
                 {
+                  period: 'Jun. 2025 – Aug. 2025',
+                  duration: '3 months',
+                  role: 'Full-Stack Developer',
+                  company: 'University of Madeira',
+                  logo: 'https://media.licdn.com/dms/image/v2/C4D0BAQGZ0svm8mSUQw/company-logo_100_100/company-logo_100_100/0/1630496843625/universidade_da_madeira_logo?e=1781740800&v=beta&t=seVK_OIBSSbqof8Ca1IQl7fCjYYOJyIB68eTsT88q2M',
+                  description: 'Funchal, Madeira, PT',
+                  skills: ['Internship']
+                },
+                {
                   period: 'Jul 2022',
                   duration: '1 month',
                   role: 'Full-Stack Developer - Summer Internship',

@@ -202,7 +202,7 @@ export default function App() {
                 João Fernandes
               </h1>
               <h2 className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 font-medium mb-8 max-w-2xl leading-relaxed text-justify">
-                Software Engineer & AI Engineer crafting modern, fast, and intelligent experiences.
+                Software Engineer & Junior AI Engineer crafting modern, fast, and intelligent experiences.
               </h2>
               
               <div className="flex flex-wrap items-center gap-4">
@@ -338,7 +338,7 @@ export default function App() {
                 {
                   period: 'Oct 2025 – Present',
                   duration: '8 months',
-                  role: 'AI Engineer',
+                  role: 'Junior AI Engineer',
                   company: 'Datamentors',
                   logo: 'https://media.licdn.com/dms/image/v2/C4D0BAQEzbpAB4qegnw/company-logo_100_100/company-logo_100_100/0/1658827782433/datamentors_logo?e=1780531200&v=beta&t=oHlz0Bm4HB_dRa4D5vhTQPVuB8FEWVO93n2bCrYmZus',
                   description: 'Santa Cruz, Madeira, Portugal',

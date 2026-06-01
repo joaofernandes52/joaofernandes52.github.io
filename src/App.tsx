@@ -345,7 +345,7 @@ export default function App() {
                   skills: ['Internship']
                 },
                 {
-                  period: 'Jun. 2025 – Aug. 2025',
+                  period: 'Jun 2025 – Aug 2025',
                   duration: '3 months',
                   role: 'Full-Stack Developer',
                   company: 'University of Madeira',

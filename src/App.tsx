@@ -446,7 +446,7 @@ export default function App() {
                 <div key={index} className="relative pl-8 md:pl-0">
                   <div className="md:grid md:grid-cols-5 md:gap-8 items-start">
                     <div className="mb-2 md:mb-0 md:text-right select-none pt-2">
-                      <span className="font-mono text-[13px] text-neutral-500 tracking-wide uppercase">{edu.period}</span>
+                      <span className="font-mono text-[13px] text-neutral-500 tracking-wide uppercase whitespace-nowrap">{edu.period}</span>
                     </div>
                     
                     <div className="md:col-span-4 pb-8 md:pb-0 relative group">

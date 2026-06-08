@@ -67,26 +67,38 @@ export default function App() {
     return () => sections.forEach((section) => observer.unobserve(section));
   }, []);
 
+  const widgetRendered = useRef(false);
+
   useEffect(() => {
-    const renderWidget = () => {
-      if (turnstileRef.current && (window as any).turnstile && !turnstileWidgetId.current) {
-        turnstileWidgetId.current = (window as any).turnstile.render(turnstileRef.current, {
-          sitekey: import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA',
-          theme: 'auto',
-          callback: (token: string) => setTurnstileToken(token),
-          'expired-callback': () => setTurnstileToken(''),
-          'error-callback': () => setTurnstileToken(''),
-        });
+    const doRender = () => {
+      if (!turnstileRef.current || !(window as any).turnstile) return;
+      if (turnstileWidgetId.current) {
+        (window as any).turnstile.remove(turnstileWidgetId.current);
+        turnstileWidgetId.current = '';
+        setTurnstileToken('');
       }
+      turnstileWidgetId.current = (window as any).turnstile.render(turnstileRef.current, {
+        sitekey: import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA',
+        theme: isDarkMode ? 'dark' : 'light',
+        callback: (token: string) => setTurnstileToken(token),
+        'expired-callback': () => setTurnstileToken(''),
+        'error-callback': () => setTurnstileToken(''),
+      });
     };
+
+    if (widgetRendered.current) {
+      doRender();
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
+          widgetRendered.current = true;
           if ((window as any).turnstile) {
-            renderWidget();
+            doRender();
           } else {
-            (window as any).onloadTurnstileCallback = renderWidget;
+            (window as any).onloadTurnstileCallback = doRender;
           }
           observer.disconnect();
         }
@@ -96,7 +108,7 @@ export default function App() {
 
     if (turnstileRef.current) observer.observe(turnstileRef.current);
     return () => observer.disconnect();
-  }, []);
+  }, [isDarkMode]);
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -71,16 +71,31 @@ export default function App() {
       if (turnstileRef.current && (window as any).turnstile && !turnstileWidgetId.current) {
         turnstileWidgetId.current = (window as any).turnstile.render(turnstileRef.current, {
           sitekey: import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA',
-          theme: isDarkMode ? 'dark' : 'light',
+          theme: 'auto',
           callback: (token: string) => setTurnstileToken(token),
           'expired-callback': () => setTurnstileToken(''),
           'error-callback': () => setTurnstileToken(''),
         });
       }
     };
-    (window as any).onloadTurnstileCallback = renderWidget;
-    if ((window as any).turnstile) renderWidget();
-  }, [isDarkMode]);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          if ((window as any).turnstile) {
+            renderWidget();
+          } else {
+            (window as any).onloadTurnstileCallback = renderWidget;
+          }
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (turnstileRef.current) observer.observe(turnstileRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -698,7 +713,7 @@ export default function App() {
                       value={contactForm.name}
                       onChange={e => setContactForm(f => ({ ...f, name: e.target.value }))}
                       className="w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-md px-3 py-2 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:focus:ring-white transition-colors"
-                      placeholder="João Fernandes"
+                      placeholder="Your Name"
                     />
                   </div>
                   <div>

@@ -108,7 +108,6 @@ export default function App() {
           email: contactForm.email,
           subject: contactForm.subject,
           message: contactForm.message,
-          'cf-turnstile-response': turnstileToken,
         }),
       });
       const data = await res.json();

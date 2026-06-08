@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Github, Linkedin, Mail, ExternalLink, Download, ArrowRight, Briefcase, User, Code, FileText, Menu, X, GraduationCap, Moon, Sun } from 'lucide-react';
 
@@ -24,6 +24,13 @@ export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const [contactForm, setContactForm] = useState({ name: '', email: '', subject: '', message: '', botcheck: '' });
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [formError, setFormError] = useState('');
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetId = useRef<string>('');
+  const [turnstileToken, setTurnstileToken] = useState('');
 
   useEffect(() => {
     if (isDarkMode) {
@@ -59,12 +66,80 @@ export default function App() {
     return () => sections.forEach((section) => observer.unobserve(section));
   }, []);
 
+  useEffect(() => {
+    const renderWidget = () => {
+      if (turnstileRef.current && (window as any).turnstile && !turnstileWidgetId.current) {
+        turnstileWidgetId.current = (window as any).turnstile.render(turnstileRef.current, {
+          sitekey: import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA',
+          theme: isDarkMode ? 'dark' : 'light',
+          callback: (token: string) => setTurnstileToken(token),
+          'expired-callback': () => setTurnstileToken(''),
+          'error-callback': () => setTurnstileToken(''),
+        });
+      }
+    };
+    (window as any).onloadTurnstileCallback = renderWidget;
+    if ((window as any).turnstile) renderWidget();
+  }, [isDarkMode]);
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (contactForm.botcheck) return;
+    const lastSubmit = parseInt(localStorage.getItem('contact_rate') || '0');
+    if (Date.now() - lastSubmit < 60000) {
+      setFormError(`Too many requests. Wait ${Math.ceil((60000 - (Date.now() - lastSubmit)) / 1000)}s.`);
+      setFormStatus('error');
+      return;
+    }
+    if (!turnstileToken) {
+      setFormError('Please complete the security check.');
+      setFormStatus('error');
+      return;
+    }
+    setFormStatus('submitting');
+    setFormError('');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          name: contactForm.name,
+          email: contactForm.email,
+          subject: contactForm.subject,
+          message: contactForm.message,
+          'cf-turnstile-response': turnstileToken,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setFormStatus('success');
+        setContactForm({ name: '', email: '', subject: '', message: '', botcheck: '' });
+        localStorage.setItem('contact_rate', Date.now().toString());
+        if (turnstileWidgetId.current) {
+          (window as any).turnstile?.reset(turnstileWidgetId.current);
+          setTurnstileToken('');
+        }
+      } else {
+        throw new Error(data.message || 'Failed to send.');
+      }
+    } catch (err) {
+      setFormStatus('error');
+      setFormError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+      if (turnstileWidgetId.current) {
+        (window as any).turnstile?.reset(turnstileWidgetId.current);
+        setTurnstileToken('');
+      }
+    }
+  };
+
   const navLinks = [
     { name: 'Home', href: '#home', icon: User },
     { name: 'About', href: '#about', icon: FileText },
     { name: 'Experience', href: '#experience', icon: Briefcase },
     { name: 'Education', href: '#education', icon: GraduationCap },
     { name: 'Projects', href: '#projects', icon: Code },
+    { name: 'Contact', href: '#contact', icon: Mail },
   ];
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -571,6 +646,131 @@ export default function App() {
                 View all on GitHub
                 <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
               </a>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* CONTACT SECTION */}
+        <section id="contact" className="scroll-mt-32 mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex items-center gap-4 mb-12">
+              <h2 className="text-3xl font-bold text-neutral-900 dark:text-white tracking-tight flex items-center gap-2">
+                <span className="text-neutral-900 dark:text-neutral-400 font-mono text-xl">05.</span> Contact
+              </h2>
+              <div className="h-px bg-white/10 flex-1"></div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-lg mb-8">
+                  Have a project in mind or just want to chat? Fill out the form and I'll get back to you as soon as possible.
+                </p>
+                <a href="mailto:joaofernandes351@gmail.com" className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors font-mono text-sm">
+                  <Mail className="h-4 w-4" />
+                  joaofernandes351@gmail.com
+                </a>
+              </div>
+
+              <form onSubmit={handleContactSubmit} className="space-y-4">
+                {/* Honeypot — bots fill this, humans don't */}
+                <input
+                  type="text"
+                  name="botcheck"
+                  value={contactForm.botcheck}
+                  onChange={e => setContactForm(f => ({ ...f, botcheck: e.target.value }))}
+                  style={{ opacity: 0, position: 'absolute', top: 0, left: 0, height: 0, width: 0, zIndex: -1 }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-mono text-neutral-500 dark:text-neutral-400 mb-1.5 uppercase tracking-wider">Name</label>
+                    <input
+                      type="text"
+                      required
+                      minLength={2}
+                      value={contactForm.name}
+                      onChange={e => setContactForm(f => ({ ...f, name: e.target.value }))}
+                      className="w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-md px-3 py-2 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:focus:ring-white transition-colors"
+                      placeholder="João Fernandes"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono text-neutral-500 dark:text-neutral-400 mb-1.5 uppercase tracking-wider">Email</label>
+                    <input
+                      type="email"
+                      required
+                      value={contactForm.email}
+                      onChange={e => setContactForm(f => ({ ...f, email: e.target.value }))}
+                      className="w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-md px-3 py-2 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:focus:ring-white transition-colors"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono text-neutral-500 dark:text-neutral-400 mb-1.5 uppercase tracking-wider">Subject</label>
+                  <input
+                    type="text"
+                    required
+                    minLength={3}
+                    value={contactForm.subject}
+                    onChange={e => setContactForm(f => ({ ...f, subject: e.target.value }))}
+                    className="w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-md px-3 py-2 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:focus:ring-white transition-colors"
+                    placeholder="Project proposal"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono text-neutral-500 dark:text-neutral-400 mb-1.5 uppercase tracking-wider">Message</label>
+                  <textarea
+                    required
+                    minLength={10}
+                    rows={5}
+                    value={contactForm.message}
+                    onChange={e => setContactForm(f => ({ ...f, message: e.target.value }))}
+                    className="w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-md px-3 py-2 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:focus:ring-white transition-colors resize-none"
+                    placeholder="Tell me about your project..."
+                  />
+                </div>
+
+                <div ref={turnstileRef} />
+
+                {formStatus === 'error' && (
+                  <p className="text-red-500 text-sm font-mono">{formError}</p>
+                )}
+                {formStatus === 'success' && (
+                  <p className="text-green-600 dark:text-green-400 text-sm font-mono">Message sent successfully! I'll get back to you soon.</p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={formStatus === 'submitting' || formStatus === 'success'}
+                  className="w-full inline-flex items-center justify-center bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 border border-neutral-900 dark:border-white px-6 py-3 rounded-md font-mono text-sm font-medium hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed gap-2"
+                >
+                  {formStatus === 'submitting' ? (
+                    <>
+                      <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Mail className="h-4 w-4" />
+                      Send Message
+                    </>
+                  )}
+                </button>
+              </form>
             </div>
           </motion.div>
         </section>

@@ -684,10 +684,20 @@ export default function App() {
                 <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-lg mb-8">
                   Have a project in mind or an opportunity to discuss? Fill out the form and I'll get back to you as soon as possible.
                 </p>
-                <a href="mailto:joaofernandes351@gmail.com" className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors font-mono text-sm">
-                  <Mail className="h-4 w-4" />
-                  joaofernandes351@gmail.com
-                </a>
+                <div className="flex flex-col gap-3">
+                  <a href="mailto:joaofernandes351@gmail.com" className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors font-mono text-sm">
+                    <Mail className="h-4 w-4" />
+                    joaofernandes351@gmail.com
+                  </a>
+                  <a href="https://www.linkedin.com/in/joaofernandes351/" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors font-mono text-sm">
+                    <Linkedin className="h-4 w-4" />
+                    linkedin.com/in/joaofernandes351
+                  </a>
+                  <a href="https://github.com/joaofernandes52" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors font-mono text-sm">
+                    <Github className="h-4 w-4" />
+                    github.com/joaofernandes52
+                  </a>
+                </div>
               </div>
 
               <form onSubmit={handleContactSubmit} className="space-y-4">

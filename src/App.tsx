@@ -346,7 +346,7 @@ export default function App() {
               <div className="h-px bg-white/10 flex-1"></div>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-12 text-neutral-600 dark:text-neutral-300 leading-relaxed text-lg">
+            <div className="grid md:grid-cols-2 gap-12 text-neutral-600 dark:text-neutral-300 leading-relaxed text-lg items-start">
               <div className="space-y-6">
                 <p className="text-justify">
                   I'm focused on building digital products that not only work perfectly but also deliver real value to the project. I like to act as a bridge between design and engineering, ensuring interfaces are accessible, responsive, and easy to use.

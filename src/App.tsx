@@ -367,6 +367,9 @@ export default function App() {
                       { name: 'Git', slug: 'git' },
                       { name: 'Figma', slug: 'figma' },
                       { name: 'Docker', slug: 'docker' },
+                      { name: 'Express', slug: 'express' },
+                      { name: 'MongoDB', slug: 'mongodb' },
+                      { name: 'Framer Motion', slug: 'framer' },
                     ].map((skill) => (
                       <span key={skill.name} className="mx-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 px-4 py-2 flex items-center gap-2 rounded-md font-mono text-xs shadow-none font-medium hover:border-neutral-800/30 dark:hover:border-neutral-600/50 hover:text-neutral-900 dark:hover:text-white group transition-colors duration-300">
                         <img 
@@ -389,6 +392,9 @@ export default function App() {
                       { name: 'Jest', slug: 'jest' },
                       { name: 'Cypress', slug: 'cypress' },
                       { name: 'Vite', slug: 'vite' },
+                      { name: 'GitHub Actions', slug: 'githubactions' },
+                      { name: 'Spring Boot', slug: 'springboot' },
+                      { name: 'Isaac Sim', slug: 'nvidia' },
                     ].map((skill) => (
                       <span key={skill.name} className="mx-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 px-4 py-2 flex items-center gap-2 rounded-md font-mono text-xs shadow-none font-medium hover:border-neutral-800/30 dark:hover:border-neutral-600/50 hover:text-neutral-900 dark:hover:text-white group transition-colors duration-300">
                         <img
@@ -439,6 +445,12 @@ export default function App() {
                           { name: 'Jest', slug: 'jest' },
                           { name: 'Cypress', slug: 'cypress' },
                           { name: 'Vite', slug: 'vite' },
+                          { name: 'Express', slug: 'express' },
+                          { name: 'MongoDB', slug: 'mongodb' },
+                          { name: 'Framer Motion', slug: 'framer' },
+                          { name: 'GitHub Actions', slug: 'githubactions' },
+                          { name: 'Spring Boot', slug: 'springboot' },
+                          { name: 'Isaac Sim', slug: 'nvidia' },
                         ].map((skill) => (
                           <span key={skill.name} className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 px-3 py-1.5 flex items-center gap-2 rounded-md font-mono text-xs font-medium hover:border-neutral-800/30 dark:hover:border-neutral-600/50 hover:text-neutral-900 dark:hover:text-white group transition-colors duration-300">
                             <img

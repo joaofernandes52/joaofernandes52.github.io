@@ -667,7 +667,7 @@ export default function App() {
             <div className="grid md:grid-cols-2 gap-12">
               <div>
                 <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-lg mb-8">
-                  Have a project in mind or just want to chat? Fill out the form and I'll get back to you as soon as possible.
+                  Have a project in mind or an opportunity to discuss? Fill out the form and I'll get back to you as soon as possible.
                 </p>
                 <a href="mailto:joaofernandes351@gmail.com" className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors font-mono text-sm">
                   <Mail className="h-4 w-4" />

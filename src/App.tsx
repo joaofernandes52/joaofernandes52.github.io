@@ -691,11 +691,11 @@ export default function App() {
                   </a>
                   <a href="https://www.linkedin.com/in/joaofernandes351/" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors font-mono text-sm">
                     <Linkedin className="h-4 w-4" />
-                    linkedin.com/in/joaofernandes351
+                    joaofernandes351
                   </a>
                   <a href="https://github.com/joaofernandes52" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors font-mono text-sm">
                     <Github className="h-4 w-4" />
-                    github.com/joaofernandes52
+                    joaofernandes52
                   </a>
                 </div>
               </div>

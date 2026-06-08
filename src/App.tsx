@@ -340,7 +340,8 @@ export default function App() {
                   duration: '8 months',
                   role: 'Junior AI Engineer',
                   company: 'Datamentors',
-                  logo: 'https://media.licdn.com/dms/image/v2/C4D0BAQEzbpAB4qegnw/company-logo_100_100/company-logo_100_100/0/1658827782433/datamentors_logo?e=1780531200&v=beta&t=oHlz0Bm4HB_dRa4D5vhTQPVuB8FEWVO93n2bCrYmZus',
+                  logo: '/logos/datamentors.jpeg',
+                  initials: 'DM',
                   description: 'Santa Cruz, Madeira, Portugal',
                   skills: ['Internship']
                 },
@@ -349,7 +350,8 @@ export default function App() {
                   duration: '3 months',
                   role: 'Full-Stack Developer',
                   company: 'University of Madeira',
-                  logo: 'https://media.licdn.com/dms/image/v2/C4D0BAQGZ0svm8mSUQw/company-logo_100_100/company-logo_100_100/0/1630496843625/universidade_da_madeira_logo?e=1781740800&v=beta&t=seVK_OIBSSbqof8Ca1IQl7fCjYYOJyIB68eTsT88q2M',
+                  logo: '/logos/uma.jpeg',
+                  initials: 'UMa',
                   description: 'Funchal, Madeira, Portugal',
                   skills: ['Internship']
                 },
@@ -358,7 +360,8 @@ export default function App() {
                   duration: '1 month',
                   role: 'Full-Stack Developer - Summer Internship',
                   company: 'ARDITI - Regional Agency for the Development of Research, Technology and Innovation',
-                  logo: 'https://media.licdn.com/dms/image/v2/D560BAQGgqdUEp4jZUA/company-logo_100_100/B56ZXN4VuIGUAc-/0/1742915854062/arditi_pt_logo?e=1780531200&v=beta&t=Q-VN1jFC3nHVMQMCz3dy1eg2qNo9EfjpBcuKlifRs6A',
+                  logo: '/logos/arditi.jpeg',
+                  initials: 'AR',
                   description: 'Funchal, Madeira, Portugal',
                   skills: ['Internship']
                 }
@@ -374,10 +377,10 @@ export default function App() {
                          </>
                       )}
                     </div>
-                    
+
                     <div className="md:col-span-4 pb-8 md:pb-0 relative group">
                       <div className="flex items-start gap-4 mb-5 border-l-2 border-neutral-200 dark:border-neutral-800 pl-6 -ml-6 pb-2">
-                        <img src={job.logo} alt={`Company logo ${job.company}`} className="w-12 h-12 rounded object-cover border border-neutral-200 dark:border-neutral-800 shrink-0 " />
+                        <img src={job.logo} alt={`Company logo ${job.company}`} className="w-12 h-12 rounded object-cover border border-neutral-200 dark:border-neutral-800 shrink-0 " onError={(e) => { const t = e.currentTarget; t.style.display='none'; const fb = t.nextElementSibling as HTMLElement; if(fb) fb.style.display='flex'; }} /><div style={{display:'none'}} className="w-12 h-12 rounded border border-neutral-200 dark:border-neutral-800 shrink-0 bg-neutral-100 dark:bg-neutral-800 items-center justify-center font-mono text-[10px] font-bold text-neutral-500 dark:text-neutral-400">{job.initials}</div>
                         <div>
                           <h3 className="text-xl font-bold text-neutral-900 dark:text-white leading-tight mb-2">{job.role}</h3>
                           <p className="text-neutral-900 dark:text-neutral-300 font-mono text-sm">{job.company}</p>
@@ -422,25 +425,29 @@ export default function App() {
                   period: 'Sep 2024 – Jun 2026',
                   degree: "Master's degree, Computer Engineering",
                   school: 'University of Madeira',
-                  logo: 'https://media.licdn.com/dms/image/v2/C4D0BAQGZ0svm8mSUQw/company-logo_100_100/company-logo_100_100/0/1630496843625/universidade_da_madeira_logo?e=1780531200&v=beta&t=VMYX-YANwM2ygfUPParBNXw6F1An7rdSP9J88KOHRxw',
+                  logo: '/logos/uma.jpeg',
+                  initials: 'UMa',
                 },
                 {
                   period: 'Oct 2023 – Jun 2024',
                   degree: 'Erasmus',
                   school: 'Faculty of Electrical Engineering and Computer Science, University of Maribor',
-                  logo: 'https://media.licdn.com/dms/image/v2/C4D0BAQF4nujCeXK4pw/company-logo_100_100/company-logo_100_100/0/1630487242933?e=1780531200&v=beta&t=VzDGXrg5tVxs6KseM6YW76vtccCU-06jYsPy6aKNcvw',
+                  logo: '/logos/maribor.jpeg',
+                  initials: 'UM',
                 },
                 {
                   period: 'Oct 2020 – Jul 2024',
                   degree: "Bachelor's degree, Computer Engineering",
                   school: 'University of Madeira',
-                  logo: 'https://media.licdn.com/dms/image/v2/C4D0BAQGZ0svm8mSUQw/company-logo_100_100/company-logo_100_100/0/1630496843625/universidade_da_madeira_logo?e=1780531200&v=beta&t=VMYX-YANwM2ygfUPParBNXw6F1An7rdSP9J88KOHRxw',
+                  logo: '/logos/uma.jpeg',
+                  initials: 'UMa',
                 },
                 {
                   period: 'Sep 2016 – Jul 2019',
                   degree: 'Professional Secondary Education, IT Equipment Management Technician',
                   school: 'Francisco Franco Secondary School',
-                  logo: 'https://seeschools.com/assets/img/clients/logo_francisco_franco.svg',
+                  logo: '/logos/francisco_franco.svg',
+                  initials: 'FF',
                 }
               ].map((edu, index) => (
                 <div key={index} className="relative pl-8 md:pl-0">
@@ -448,10 +455,10 @@ export default function App() {
                     <div className="mb-2 md:mb-0 md:text-right select-none pt-2">
                       <span className="font-mono text-[13px] text-neutral-500 tracking-wide uppercase whitespace-nowrap">{edu.period}</span>
                     </div>
-                    
+
                     <div className="md:col-span-4 pb-8 md:pb-0 relative group">
                       <div className="flex items-start gap-4 mb-2 border-l-2 border-neutral-200 dark:border-neutral-800 pl-6 -ml-6 pb-2">
-                        <img src={edu.logo} alt={`Logo of ${edu.school}`} className="w-12 h-12 rounded object-cover border border-neutral-200 dark:border-neutral-800 shrink-0" />
+                        <img src={edu.logo} alt={`Logo of ${edu.school}`} className="w-12 h-12 rounded object-cover border border-neutral-200 dark:border-neutral-800 shrink-0" onError={(e) => { const t = e.currentTarget; t.style.display='none'; const fb = t.nextElementSibling as HTMLElement; if(fb) fb.style.display='flex'; }} /><div style={{display:'none'}} className="w-12 h-12 rounded border border-neutral-200 dark:border-neutral-800 shrink-0 bg-neutral-100 dark:bg-neutral-800 items-center justify-center font-mono text-[10px] font-bold text-neutral-500 dark:text-neutral-400">{edu.initials}</div>
                         <div className="pt-0.5">
                           <h3 className="text-xl font-bold text-neutral-900 dark:text-white leading-tight mb-2">{edu.degree}</h3>
                           <p className="text-neutral-900 dark:text-neutral-300 font-mono text-sm">{edu.school}</p>

@@ -214,26 +214,26 @@ export default function App() {
 
           {/* Social Links Desktop */}
           <div className="hidden md:flex items-center space-x-3 relative z-10">
-             <button 
-               onClick={() => setIsDarkMode(!isDarkMode)} 
-               className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 p-1.5 rounded-full transition-colors"
+             <button
+               onClick={() => setIsDarkMode(!isDarkMode)}
+               className={`p-1.5 rounded-full transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-900 ${isDarkMode ? 'text-neutral-500 hover:text-amber-400' : 'text-neutral-500 hover:text-indigo-500'}`}
                aria-label="Toggle dark mode"
              >
                {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
              </button>
-             <a href="https://www.linkedin.com/in/joaofernandes351/" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 p-1.5 rounded-full transition-colors" aria-label="LinkedIn">
+             <a href="https://www.linkedin.com/in/joaofernandes351/" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-[#0A66C2] hover:bg-neutral-100 dark:hover:bg-neutral-900 p-1.5 rounded-full transition-colors" aria-label="LinkedIn">
               <Linkedin className="h-5 w-5" />
              </a>
-            <a href="https://github.com/joaofernandes52" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 p-1.5 rounded-full transition-colors" aria-label="GitHub">
+            <a href="https://github.com/joaofernandes52" target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-[#6e40c9] hover:bg-neutral-100 dark:hover:bg-neutral-900 p-1.5 rounded-full transition-colors" aria-label="GitHub">
               <Github className="h-5 w-5" />
             </a>
           </div>
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center space-x-2 relative z-10 p-1 px-2">
-            <button 
-               onClick={() => setIsDarkMode(!isDarkMode)} 
-               className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors p-1"
+            <button
+               onClick={() => setIsDarkMode(!isDarkMode)}
+               className={`transition-colors p-1 ${isDarkMode ? 'text-neutral-500 hover:text-amber-400' : 'text-neutral-500 hover:text-indigo-500'}`}
                aria-label="Toggle dark mode"
              >
                {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}

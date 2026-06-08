@@ -1,7 +1,7 @@
 # João Fernandes
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/joaofernandes52/joaofernandes52.github.io/deploy.yml?style=flat-square&logo=githubactions&logoColor=white)](https://github.com/joaofernandes52/joaofernandes52.github.io/actions)
-[![Live Demo](https://img.shields.io/badge/demo-online-success?style=flat-square&logo=vercel&logoColor=white)](https://joaofernandes52.github.io/)
+[![Live Demo](https://img.shields.io/badge/demo-online-success?style=flat-square&logo=githubpages&logoColor=white)](https://joaofernandes52.github.io/)
 [![Framework](https://img.shields.io/badge/framework-React-61DAFB?style=flat-square&logo=react&logoColor=black)]()
 [![Language](https://img.shields.io/badge/language-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)]()
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)]()
@@ -35,8 +35,12 @@ Try it live: [https://joaofernandes52.github.io/](https://joaofernandes52.github
 ```text
 .
 ├── .github/workflows/    # CI/CD pipelines (GitHub Pages deployment)
-├── public/               # Static assets bypassing the bundler
+├── public/
+│   └── logos/            # Company and institution logo assets
 ├── src/
+│   ├── components/
+│   │   ├── EditTool.tsx  # Animated code editor UI component
+│   │   └── ui/           # Reusable UI primitives (marquee, background)
 │   ├── App.tsx           # Main application composition and layout
 │   ├── index.css         # Global styling and Tailwind directives
 │   └── main.tsx          # React application entry point

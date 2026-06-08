@@ -25,6 +25,7 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
+  const [showAllSkills, setShowAllSkills] = useState(false);
   const [contactForm, setContactForm] = useState({ name: '', email: '', subject: '', message: '', botcheck: '' });
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [formError, setFormError] = useState('');
@@ -391,9 +392,9 @@ export default function App() {
                       { name: 'Vite', slug: 'vite' },
                     ].map((skill) => (
                       <span key={skill.name} className="mx-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 px-4 py-2 flex items-center gap-2 rounded-md font-mono text-xs shadow-none font-medium hover:border-neutral-800/30 dark:hover:border-neutral-600/50 hover:text-neutral-900 dark:hover:text-white group transition-colors duration-300">
-                        <img 
-                          src={skill.slug === 'csharp' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg` : skill.slug === 'java' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg` : `https://cdn.simpleicons.org/${skill.slug}`} 
-                          alt={`${skill.name} logo`} 
+                        <img
+                          src={skill.slug === 'csharp' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg` : skill.slug === 'java' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg` : `https://cdn.simpleicons.org/${skill.slug}`}
+                          alt={`${skill.name} logo`}
                           loading="lazy"
                           className="w-4 h-4 group-hover:scale-110 transition-transform duration-300 dark:brightness-0 dark:invert opacity-80 group-hover:opacity-100"
                         />
@@ -402,6 +403,58 @@ export default function App() {
                     ))}
                   </Marquee>
                 </div>
+
+                <button
+                  onClick={() => setShowAllSkills(v => !v)}
+                  className="mt-4 flex items-center gap-1.5 font-mono text-xs text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                >
+                  {showAllSkills ? 'Show less ↑' : 'View all skills ↓'}
+                </button>
+
+                <AnimatePresence>
+                  {showAllSkills && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        {[
+                          { name: 'JavaScript', slug: 'javascript' },
+                          { name: 'TypeScript', slug: 'typescript' },
+                          { name: 'React', slug: 'react' },
+                          { name: 'Next.js', slug: 'nextdotjs' },
+                          { name: 'Node.js', slug: 'nodedotjs' },
+                          { name: 'Tailwind CSS', slug: 'tailwindcss' },
+                          { name: 'PostgreSQL', slug: 'postgresql' },
+                          { name: 'Git', slug: 'git' },
+                          { name: 'Figma', slug: 'figma' },
+                          { name: 'Docker', slug: 'docker' },
+                          { name: 'C#', slug: 'csharp' },
+                          { name: 'Java', slug: 'java' },
+                          { name: 'Supabase', slug: 'supabase' },
+                          { name: 'Python', slug: 'python' },
+                          { name: 'GraphQL', slug: 'graphql' },
+                          { name: 'Jest', slug: 'jest' },
+                          { name: 'Cypress', slug: 'cypress' },
+                          { name: 'Vite', slug: 'vite' },
+                        ].map((skill) => (
+                          <span key={skill.name} className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 px-3 py-1.5 flex items-center gap-2 rounded-md font-mono text-xs font-medium hover:border-neutral-800/30 dark:hover:border-neutral-600/50 hover:text-neutral-900 dark:hover:text-white group transition-colors duration-300">
+                            <img
+                              src={skill.slug === 'csharp' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg` : skill.slug === 'java' ? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg` : `https://cdn.simpleicons.org/${skill.slug}`}
+                              alt={`${skill.name} logo`}
+                              loading="lazy"
+                              className="w-4 h-4 group-hover:scale-110 transition-transform duration-300 dark:brightness-0 dark:invert opacity-80 group-hover:opacity-100"
+                            />
+                            {skill.name}
+                          </span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </motion.div>

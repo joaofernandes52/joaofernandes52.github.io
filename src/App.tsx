@@ -302,9 +302,9 @@ export default function App() {
                 >
                   View Projects
                 </a>
-                <a 
-                  href="#" 
-                  onClick={(e) => scrollToSection(e, '#')}
+                <a
+                  href="/cv.pdf"
+                  download="Joao_Fernandes_CV.pdf"
                   className="inline-flex items-center justify-center bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 px-6 py-3 rounded-md font-mono text-sm font-medium hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors gap-2"
                 >
                   <Download className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
@@ -512,30 +512,39 @@ export default function App() {
                   duration: '8 months',
                   role: 'Junior AI Engineer',
                   company: 'Datamentors',
+                  location: 'Santa Cruz, Madeira, Portugal',
                   logo: '/logos/datamentors.jpeg',
                   initials: 'DM',
-                  description: 'Santa Cruz, Madeira, Portugal',
-                  skills: ['Internship']
+                  // TODO: Descreve o que fazias, o que construíste e o impacto que tiveste
+                  description: 'Descreve aqui as tuas responsabilidades principais. Ex: Desenvolvi X para Y, o que resultou em Z.',
+                  // TODO: Substitui pelas tecnologias que realmente usaste
+                  skills: ['Python', 'Tecnologia A', 'Tecnologia B', 'Tecnologia C']
                 },
                 {
                   period: 'Jun 2025 – Aug 2025',
                   duration: '3 months',
                   role: 'Full-Stack Developer',
                   company: 'University of Madeira',
+                  location: 'Funchal, Madeira, Portugal',
                   logo: '/logos/uma.jpeg',
                   initials: 'UMa',
-                  description: 'Funchal, Madeira, Portugal',
-                  skills: ['Internship']
+                  // TODO: Descreve o que fazias, o que construíste e o impacto que tiveste
+                  description: 'Descreve aqui as tuas responsabilidades principais. Ex: Desenvolvi X para Y, o que resultou em Z.',
+                  // TODO: Substitui pelas tecnologias que realmente usaste
+                  skills: ['React', 'Tecnologia A', 'Tecnologia B', 'Tecnologia C']
                 },
                 {
                   period: 'Jul 2022',
                   duration: '1 month',
                   role: 'Full-Stack Developer - Summer Internship',
                   company: 'ARDITI - Regional Agency for the Development of Research, Technology and Innovation',
+                  location: 'Funchal, Madeira, Portugal',
                   logo: '/logos/arditi.jpeg',
                   initials: 'AR',
-                  description: 'Funchal, Madeira, Portugal',
-                  skills: ['Internship']
+                  // TODO: Descreve o que fazias, o que construíste e o impacto que tiveste
+                  description: 'Descreve aqui as tuas responsabilidades principais. Ex: Desenvolvi X para Y, o que resultou em Z.',
+                  // TODO: Substitui pelas tecnologias que realmente usaste
+                  skills: ['Tecnologia A', 'Tecnologia B', 'Tecnologia C']
                 }
               ].map((job, index) => (
                 <div key={index} className="relative pl-8 md:pl-0">
@@ -558,6 +567,7 @@ export default function App() {
                           <p className="text-neutral-900 dark:text-neutral-300 font-mono text-sm">{job.company}</p>
                         </div>
                       </div>
+                      <p className="text-xs font-mono text-neutral-400 dark:text-neutral-500 mb-3">{job.location}</p>
                       <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed mb-6">{job.description}</p>
                         {job.skills && job.skills.length > 0 && (
                           <div className="flex flex-wrap gap-2">

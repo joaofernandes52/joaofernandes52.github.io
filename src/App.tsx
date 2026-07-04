@@ -516,7 +516,7 @@ export default function App() {
                   logo: '/logos/datamentors.jpeg',
                   initials: 'DM',
                   // TODO: Descreve o que fazias, o que construíste e o impacto que tiveste
-                  description: 'Descreve aqui as tuas responsabilidades principais. Ex: Desenvolvi X para Y, o que resultou em Z.',
+                  description: 'Description',
                   // TODO: Substitui pelas tecnologias que realmente usaste
                   skills: ['Python', 'Tecnologia A', 'Tecnologia B', 'Tecnologia C']
                 },
@@ -529,7 +529,7 @@ export default function App() {
                   logo: '/logos/uma.jpeg',
                   initials: 'UMa',
                   // TODO: Descreve o que fazias, o que construíste e o impacto que tiveste
-                  description: 'Descreve aqui as tuas responsabilidades principais. Ex: Desenvolvi X para Y, o que resultou em Z.',
+                  description: 'Description',
                   // TODO: Substitui pelas tecnologias que realmente usaste
                   skills: ['React', 'Tecnologia A', 'Tecnologia B', 'Tecnologia C']
                 },
@@ -542,7 +542,7 @@ export default function App() {
                   logo: '/logos/arditi.jpeg',
                   initials: 'AR',
                   // TODO: Descreve o que fazias, o que construíste e o impacto que tiveste
-                  description: 'Descreve aqui as tuas responsabilidades principais. Ex: Desenvolvi X para Y, o que resultou em Z.',
+                  description: 'Description',
                   // TODO: Substitui pelas tecnologias que realmente usaste
                   skills: ['Tecnologia A', 'Tecnologia B', 'Tecnologia C']
                 }
